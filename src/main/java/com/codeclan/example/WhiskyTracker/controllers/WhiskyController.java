@@ -11,25 +11,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class WhiskyController {
     @Autowired
     WhiskyRepository whiskyRepository;
 
+// THIS WORKS OK
+//    @GetMapping(value = "/whiskies")
+//    public ResponseEntity<List<Whisky>> getAllWhisky(@RequestParam(name = "year", required = false)Integer year){
+//        if (year !=null){
+//            return new ResponseEntity<>(whiskyRepository.findByYear(year), HttpStatus.OK);
+//        }
+//        return new ResponseEntity<>(whiskyRepository.findAll(), HttpStatus.OK);
+//    }
 
-    @GetMapping(value = "/whiskies")
-    public ResponseEntity<List<Whisky>> getAllWhisky(@RequestParam(name = "year", required = false)Integer year){
-        if (year !=null){
-            return new ResponseEntity<>(whiskyRepository.findByYear(year), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(whiskyRepository.findAll(), HttpStatus.OK);
-    }
+
+
 
 //    @GetMapping(value = "/whiskies")
 //    public ResponseEntity<List<Whisky>> getAllWhiskyByDistilleryAndAge(@RequestParam(name = "name", required = false)String name, @RequestParam(name = "age", required = false) Integer age){
 //        if (name !=null){
-//            return new ResponseEntity<>(whiskyRepository.findWhiskyByDistilleryAndAge(name, age), HttpStatus.OK);
+//            return new ResponseEntity<>(whiskyRepository.findWhiskyByDistilleryNameAndAge(name, age), HttpStatus.OK);
 //        }
 //        if (name !=null){
 //            return new ResponseEntity<>(whiskyRepository.)
@@ -38,5 +42,17 @@ public class WhiskyController {
 //    }
 
 
+
+//    merge two params and two methods.
+//    @GetMapping(value = "/whiskies")
+//    public ResponseEntity<List<Whisky>> getAllWhiskyByDistilleryNameAndAge(@RequestParam(name = "year", required = false)Integer year, @RequestParam(name = "name", required = false)String name, @RequestParam(name = "age", required = false) Integer age){
+//        if (name !=null && age != null){
+//            return new ResponseEntity<>(whiskyRepository.findWhiskyByDistilleryNameAndAge(name, age), HttpStatus.OK);
+//        }
+//        if (year !=null){
+//            return new ResponseEntity<>(whiskyRepository.findByYear(year), HttpStatus.OK);
+//        }
+//        return new ResponseEntity<>(whiskyRepository.findAll(), HttpStatus.OK);
+//    }
 
 }
