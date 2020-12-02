@@ -32,8 +32,11 @@ public class WhiskyTrackerApplicationTests {
 	@Test
 	public void canFindWhiskiesByDistilleryNameAndAge(){
 		Distillery foundDistillery = distilleryRepository.getOne(1L);
-		List<Whisky> foundWhiskies = whiskyRepository.findWhiskyByDistilleryNameAndAge("Glendronach", 12);
+		List<Whisky> foundWhiskies = whiskyRepository.findWhiskiesByDistilleryNameAndAge("Glendronach", 12);
+		assertEquals(1,foundWhiskies.size());
 	}
+
+
 //why does this not like foundDistillery passed into the argument ?
 
 //
