@@ -46,12 +46,15 @@ public class WhiskyController {
 
 //    merge two params and two methods.
     @GetMapping(value = "/whiskies")
-    public ResponseEntity<List<Whisky>> getAllWhiskyByDistilleryNameAndAge(@RequestParam(name = "year", required = false)Integer year, @RequestParam(name = "name", required = false) String name, @RequestParam(name = "age", required = false) Integer age){
+    public ResponseEntity<List<Whisky>> getAllWhiskyByDistilleryNameAndAge(@RequestParam(name = "year", required = false)Integer year, @RequestParam(name = "name", required = false) String name, @RequestParam(name = "age", required = false) Integer age, @RequestParam(name = "region", required = false)String region) {
         if (year !=null){
             return new ResponseEntity<>(whiskyRepository.findByYear(year), HttpStatus.OK);
         }
         if (name !=null && age != null){
             return new ResponseEntity<>(whiskyRepository.findWhiskiesByDistilleryNameAndAge(name, age), HttpStatus.OK);
+        }
+        if (region != null){
+            return new ResponseEntity<>(whiskyRepository.findByDistilleryRegion(region), HttpStatus.OK);
         }
         return new ResponseEntity<>(whiskyRepository.findAll(), HttpStatus.OK);
     }
